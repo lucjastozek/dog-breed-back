@@ -9,8 +9,9 @@ export function LeaderboardView(): JSX.Element {
     const [topBreeds, setTopBreeds] = useState<BreedProps[]>([]);
 
     useEffect(() => {
-        fetchTopBreeds(setTopBreeds);
+        fetchTopBreeds().then((top10) => setTopBreeds(top10));
     }, []);
+
     return (
         <Flex direction={"row"} justifyContent={"center"} alignItems={"center"}>
             <Leaderboard topBreeds={topBreeds} setTopBreeds={setTopBreeds} />

@@ -1,9 +1,7 @@
-import { BreedProps } from "../interfaces/BreedProps";
 import { backendApi } from "./requestConfig";
 
-export async function fetchTopBreeds(
-    setTopBreeds: React.Dispatch<React.SetStateAction<BreedProps[]>>
-) {
+export async function fetchTopBreeds() {
     const response = await backendApi.get("/leaderboard");
-    setTopBreeds(response.data);
+
+    return response.data;
 }

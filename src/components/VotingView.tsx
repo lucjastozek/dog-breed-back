@@ -1,6 +1,6 @@
-import { fetchImage } from "../utils/fetchImage";
-import { useEffect, useState } from "react";
 import { Flex, Spacer } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { fetchImage } from "../utils/fetchImage";
 import { VotingCard } from "./VotingCard";
 
 export function VotingView(): JSX.Element {
@@ -11,16 +11,30 @@ export function VotingView(): JSX.Element {
     const [voted, setVoted] = useState(false);
 
     useEffect(() => {
-        fetchImage(setImageLeft, setNameLeft);
-        fetchImage(setImageRight, setNameRight);
+        fetchImage().then(({ imgLink, name }) => {
+            setImageLeft(imgLink);
+            setNameLeft(name);
+        });
+
+        fetchImage().then(({ imgLink, name }) => {
+            setImageRight(imgLink);
+            setNameRight(name);
+        });
 
         setVoted(false);
     }, [voted]);
 
     useEffect(() => {
         if (nameLeft === nameRight) {
-            fetchImage(setImageLeft, setNameLeft);
-            fetchImage(setImageRight, setNameRight);
+            fetchImage().then(({ imgLink, name }) => {
+                setImageLeft(imgLink);
+                setNameLeft(name);
+            });
+
+            fetchImage().then(({ imgLink, name }) => {
+                setImageRight(imgLink);
+                setNameRight(name);
+            });
         }
     }, [nameLeft, nameRight]);
 

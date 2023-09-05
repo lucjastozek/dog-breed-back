@@ -1,3 +1,4 @@
+import { RepeatIcon } from "@chakra-ui/icons";
 import {
     Heading,
     IconButton,
@@ -10,7 +11,6 @@ import {
     Tr,
 } from "@chakra-ui/react";
 import { BreedProps } from "../interfaces/BreedProps";
-import { RepeatIcon } from "@chakra-ui/icons";
 import { fetchTopBreeds } from "../utils/fetchTopBreeds";
 
 interface LeaderboardProps {
@@ -22,7 +22,9 @@ export function Leaderboard({
     setTopBreeds,
 }: LeaderboardProps): JSX.Element {
     async function handleRefresh() {
-        fetchTopBreeds(setTopBreeds);
+        fetchTopBreeds().then((top10) => {
+            setTopBreeds(top10);
+        });
     }
     return (
         <div>

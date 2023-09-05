@@ -1,13 +1,11 @@
 import {
+    Button,
     Card,
     CardBody,
     CardFooter,
-    Image,
-    Stack,
-    Heading,
     Divider,
-    ButtonGroup,
-    Button,
+    Heading,
+    Image,
 } from "@chakra-ui/react";
 
 import { backendApi } from "../utils/requestConfig";
@@ -43,23 +41,19 @@ export function VotingCard({
                         alt={name}
                         borderRadius="lg"
                     />
-                    <Stack mt="6" spacing="3">
-                        <Heading textTransform={"capitalize"} size="md">
-                            {name}
-                        </Heading>
-                    </Stack>
+                    <Heading textTransform={"capitalize"} size="md">
+                        {name}
+                    </Heading>
                 </CardBody>
                 <Divider />
                 <CardFooter>
-                    <ButtonGroup spacing="2">
-                        <Button
-                            onClick={handleVote}
-                            variant="solid"
-                            colorScheme="blue"
-                        >
-                            Vote
-                        </Button>
-                    </ButtonGroup>
+                    <Button
+                        onClick={handleVote}
+                        variant="solid"
+                        colorScheme="blue"
+                    >
+                        Vote
+                    </Button>
                 </CardFooter>
             </Card>
         </div>
