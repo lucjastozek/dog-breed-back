@@ -7,7 +7,8 @@ import {
     Button,
     useColorMode,
 } from "@chakra-ui/react";
-import { VotingView } from "./votingView";
+import { VotingView } from "./VotingView";
+import { LeaderboardView } from "./LeaderboardView";
 
 export function TabsView(): JSX.Element {
     function ColourMode(): JSX.Element {
@@ -32,7 +33,7 @@ export function TabsView(): JSX.Element {
                     <VotingView />
                 </TabPanel>
                 <TabPanel>
-                    <p>two!</p>
+                    <LeaderboardView />
                 </TabPanel>
             </TabPanels>
         </Tabs>

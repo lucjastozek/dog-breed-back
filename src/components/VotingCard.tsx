@@ -10,12 +10,27 @@ import {
     Button,
 } from "@chakra-ui/react";
 
-interface cardProps {
+import { backendApi } from "../utils/requestConfig";
+
+interface CardProps {
     imgLink: string;
     name: string;
+    setVoted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function VotingCard({ imgLink, name }: cardProps): JSX.Element {
+export function VotingCard({
+    imgLink,
+    name,
+    setVoted,
+}: CardProps): JSX.Element {
+    async function handleVote() {
+        await backendApi.put("/leaderboard/", {
+            breed: name,
+        });
+
+        setVoted(true);
+    }
+
     return (
         <div>
             <Card maxW="sm">
@@ -29,13 +44,19 @@ export function VotingCard({ imgLink, name }: cardProps): JSX.Element {
                         borderRadius="lg"
                     />
                     <Stack mt="6" spacing="3">
-                        <Heading size="md">{name}</Heading>
+                        <Heading textTransform={"capitalize"} size="md">
+                            {name}
+                        </Heading>
                     </Stack>
                 </CardBody>
                 <Divider />
                 <CardFooter>
                     <ButtonGroup spacing="2">
-                        <Button variant="solid" colorScheme="blue">
+                        <Button
+                            onClick={handleVote}
+                            variant="solid"
+                            colorScheme="blue"
+                        >
                             Vote
                         </Button>
                     </ButtonGroup>
