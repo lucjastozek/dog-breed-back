@@ -1,6 +1,6 @@
 import { BreedProps } from "../interfaces/BreedProps";
 import { useEffect, useState } from "react";
-import { Image } from "@chakra-ui/react";
+import { Flex, Heading, Image } from "@chakra-ui/react";
 import { fetchImages } from "../utils/fetchImages";
 
 interface TopImagesProps {
@@ -15,10 +15,16 @@ export function TopImages({ top3Breeds }: TopImagesProps): JSX.Element {
     }, [top3Breeds]);
 
     return (
-        <div>
+        <Flex margin={"2vh"} direction={"column"}>
+            <Heading>Top 3 Breeds!</Heading>
             {images.map((img, index) => (
-                <Image src={img} key={index} />
+                <Image
+                    src={img}
+                    key={index}
+                    width={"20vw"}
+                    objectFit={"cover"}
+                />
             ))}
-        </div>
+        </Flex>
     );
 }
