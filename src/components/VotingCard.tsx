@@ -4,11 +4,13 @@ import {
     CardBody,
     CardFooter,
     Divider,
+    Fade,
     Heading,
     Image,
 } from "@chakra-ui/react";
 
 import { backendApi } from "../utils/requestConfig";
+import { useState } from "react";
 
 interface CardProps {
     imgLink: string;
@@ -25,28 +27,41 @@ export function VotingCard({
     setVoted,
     onImageClick,
 }: CardProps): JSX.Element {
+    const [isLoaded, setIsLoaded] = useState(false);
+
     async function handleVote() {
         await backendApi.put("/leaderboard/", {
             breed: name,
         });
 
+        setIsLoaded(false);
         setVoted(true);
     }
+
+    const handleImageClick = () => {
+        setIsLoaded(false);
+        onImageClick();
+    };
 
     return (
         <div>
             <Card maxW="sm">
                 <CardBody>
-                    <Image
-                        width={"40vh"}
-                        height={"40vh"}
-                        object-fit={"cover"}
-                        src={imgLink}
-                        alt={name}
-                        borderRadius="lg"
-                        fallbackSrc="/dog.png"
-                        onClick={onImageClick}
-                    />
+                    <Fade in={isLoaded}>
+                        <Image
+                            width={"40vh"}
+                            height={"40vh"}
+                            object-fit={"cover"}
+                            src={imgLink}
+                            alt={name}
+                            borderRadius="lg"
+                            fallbackStrategy="onError"
+                            fallbackSrc="dog-fallback.jpg"
+                            onClick={handleImageClick}
+                            onLoad={() => setIsLoaded(true)}
+                            onError={() => setIsLoaded(true)}
+                        />
+                    </Fade>
 
                     <Heading
                         marginTop={"0.5vh"}
