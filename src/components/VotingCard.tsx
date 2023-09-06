@@ -30,12 +30,13 @@ export function VotingCard({
     const [isLoaded, setIsLoaded] = useState(false);
 
     async function handleVote() {
+        setVoted(true);
+
         await backendApi.put("/leaderboard/", {
             breed: name,
         });
 
         setIsLoaded(false);
-        setVoted(true);
     }
 
     const handleImageClick = () => {
