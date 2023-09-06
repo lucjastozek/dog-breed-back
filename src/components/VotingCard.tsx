@@ -40,8 +40,14 @@ export function VotingCard({
                         src={imgLink}
                         alt={name}
                         borderRadius="lg"
+                        fallbackSrc="/dog.png"
                     />
-                    <Heading textTransform={"capitalize"} size="md">
+
+                    <Heading
+                        marginTop={"0.5vh"}
+                        textTransform={"capitalize"}
+                        size="md"
+                    >
                         {name}
                     </Heading>
                 </CardBody>
