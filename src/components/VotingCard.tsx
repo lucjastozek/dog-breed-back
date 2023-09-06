@@ -13,12 +13,14 @@ import { backendApi } from "../utils/requestConfig";
 interface CardProps {
     imgLink: string;
     name: string;
+    voted: boolean;
     setVoted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function VotingCard({
     imgLink,
     name,
+    voted,
     setVoted,
 }: CardProps): JSX.Element {
     async function handleVote() {
@@ -40,8 +42,14 @@ export function VotingCard({
                         src={imgLink}
                         alt={name}
                         borderRadius="lg"
+                        fallbackSrc="/dog.png"
                     />
-                    <Heading textTransform={"capitalize"} size="md">
+
+                    <Heading
+                        marginTop={"0.5vh"}
+                        textTransform={"capitalize"}
+                        size="md"
+                    >
                         {name}
                     </Heading>
                 </CardBody>
@@ -51,6 +59,7 @@ export function VotingCard({
                         onClick={handleVote}
                         variant="solid"
                         colorScheme="blue"
+                        isDisabled={voted}
                     >
                         Vote
                     </Button>

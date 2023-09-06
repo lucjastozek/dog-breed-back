@@ -1,57 +1,45 @@
 import { Flex, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { fetchImage } from "../utils/fetchImage";
 import { VotingCard } from "./VotingCard";
+import { generateDiffBreeds } from "../utils/generateDiffBreeds";
+import { BreedCard } from "../interfaces/BreedCard";
 
 export function VotingView(): JSX.Element {
-    const [imageLeft, setImageLeft] = useState("");
-    const [imageRight, setImageRight] = useState("");
-    const [nameLeft, setNameLeft] = useState("");
-    const [nameRight, setNameRight] = useState("");
+    const [breedLeft, setBreedLeft] = useState<BreedCard>({
+        imgLink: "",
+        name: "",
+    });
+    const [breedRight, setBreedRight] = useState<BreedCard>({
+        imgLink: "",
+        name: "",
+    });
     const [voted, setVoted] = useState(false);
 
     useEffect(() => {
-        fetchImage().then(({ imgLink, name }) => {
-            setImageLeft(imgLink);
-            setNameLeft(name);
-        });
-
-        fetchImage().then(({ imgLink, name }) => {
-            setImageRight(imgLink);
-            setNameRight(name);
+        generateDiffBreeds().then(({ leftBreed, rightBreed }) => {
+            setBreedLeft(leftBreed);
+            setBreedRight(rightBreed);
         });
 
         setVoted(false);
     }, [voted]);
-
-    useEffect(() => {
-        if (nameLeft === nameRight) {
-            fetchImage().then(({ imgLink, name }) => {
-                setImageLeft(imgLink);
-                setNameLeft(name);
-            });
-
-            fetchImage().then(({ imgLink, name }) => {
-                setImageRight(imgLink);
-                setNameRight(name);
-            });
-        }
-    }, [nameLeft, nameRight]);
 
     return (
         <div>
             <Flex color="white">
                 <Spacer />
                 <VotingCard
-                    imgLink={imageLeft}
-                    name={nameLeft}
+                    imgLink={breedLeft.imgLink}
+                    name={breedLeft.name}
                     setVoted={setVoted}
+                    voted={voted}
                 />
                 <Spacer />
                 <VotingCard
-                    imgLink={imageRight}
-                    name={nameRight}
+                    imgLink={breedRight.imgLink}
+                    name={breedRight.name}
                     setVoted={setVoted}
+                    voted={voted}
                 />
                 <Spacer />
             </Flex>
