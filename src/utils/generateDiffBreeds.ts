@@ -1,11 +1,11 @@
-import { fetchImage } from "./fetchImage";
+import { fetchBreedCard } from "./fetchImage";
 
 export async function generateDiffBreeds() {
-    const leftBreed = await fetchImage();
-    let rightBreed = await fetchImage();
+    const leftBreed = await fetchBreedCard();
+    let rightBreed = await fetchBreedCard();
 
     while (leftBreed.name === rightBreed.name) {
-        rightBreed = await fetchImage();
+        rightBreed = await fetchBreedCard();
     }
 
     return {
