@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { VotingCard } from "./VotingCard";
 import { generateDiffBreeds } from "../utils/generateDiffBreeds";
 import { BreedCard } from "../interfaces/BreedCard";
+import { fetchBreedImageLinks } from "../utils/fetchBreedImageLinks";
 
 export function VotingView(): JSX.Element {
     const [breedLeft, setBreedLeft] = useState<BreedCard>({
@@ -24,6 +25,15 @@ export function VotingView(): JSX.Element {
         setVoted(false);
     }, [voted]);
 
+    const handleImageClick = (
+        breed: string,
+        setBreed: React.Dispatch<React.SetStateAction<BreedCard>>
+    ) => {
+        fetchBreedImageLinks([breed]).then(([imgLink]) => {
+            setBreed((prev) => ({ ...prev, imgLink }));
+        });
+    };
+
     return (
         <div>
             <Flex color="white">
@@ -33,6 +43,9 @@ export function VotingView(): JSX.Element {
                     name={breedLeft.name}
                     setVoted={setVoted}
                     voted={voted}
+                    onImageClick={() =>
+                        handleImageClick(breedLeft.name, setBreedLeft)
+                    }
                 />
                 <Spacer />
                 <VotingCard
@@ -40,6 +53,9 @@ export function VotingView(): JSX.Element {
                     name={breedRight.name}
                     setVoted={setVoted}
                     voted={voted}
+                    onImageClick={() =>
+                        handleImageClick(breedRight.name, setBreedRight)
+                    }
                 />
                 <Spacer />
             </Flex>

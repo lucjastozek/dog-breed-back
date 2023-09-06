@@ -15,6 +15,7 @@ interface CardProps {
     name: string;
     voted: boolean;
     setVoted: React.Dispatch<React.SetStateAction<boolean>>;
+    onImageClick: () => void;
 }
 
 export function VotingCard({
@@ -22,6 +23,7 @@ export function VotingCard({
     name,
     voted,
     setVoted,
+    onImageClick,
 }: CardProps): JSX.Element {
     async function handleVote() {
         await backendApi.put("/leaderboard/", {
@@ -43,6 +45,7 @@ export function VotingCard({
                         alt={name}
                         borderRadius="lg"
                         fallbackSrc="/dog.png"
+                        onClick={onImageClick}
                     />
 
                     <Heading
