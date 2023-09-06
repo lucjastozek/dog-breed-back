@@ -32,12 +32,14 @@ export function VotingView(): JSX.Element {
                     imgLink={breedLeft.imgLink}
                     name={breedLeft.name}
                     setVoted={setVoted}
+                    voted={voted}
                 />
                 <Spacer />
                 <VotingCard
                     imgLink={breedRight.imgLink}
                     name={breedRight.name}
                     setVoted={setVoted}
+                    voted={voted}
                 />
                 <Spacer />
             </Flex>
