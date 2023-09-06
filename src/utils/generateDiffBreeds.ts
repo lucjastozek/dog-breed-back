@@ -1,4 +1,4 @@
-import { fetchBreedCard } from "./fetchImage";
+import { fetchBreedCard } from "./fetchBreedCard";
 
 export async function generateDiffBreeds() {
     const leftBreed = await fetchBreedCard();
