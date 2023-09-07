@@ -20,26 +20,20 @@ export function TabsView(): JSX.Element {
     );
 
     return (
-        <Tabs variant="enclosed" colorScheme="green" height={"100vh"}>
-            <TabList>
+        <Tabs isFitted variant="enclosed" colorScheme="green" height={"100vh"}>
+            <TabList alignItems={"center"}>
                 <Tab>Voting</Tab>
                 <Tab>Leaderboard</Tab>
-                <Flex
-                    justifyContent={"flex-end"}
-                    width={"60vw"}
-                    alignItems={"center"}
-                >
-                    <Stat>
-                        <Flex alignItems={"center"} justifyContent={"flex-end"}>
-                            <StatLabel>Your votes</StatLabel>
-                            <StatNumber marginLeft={"1vw"}>
-                                {voteCounter}
-                            </StatNumber>
-                        </Flex>
-                    </Stat>
+                <Stat>
+                    <Flex alignItems={"center"} justifyContent={"flex-end"}>
+                        <StatLabel>Your votes</StatLabel>
+                        <StatNumber marginLeft={"1vw"}>
+                            {voteCounter}
+                        </StatNumber>
+                    </Flex>
+                </Stat>
 
-                    <ColourMode />
-                </Flex>
+                <ColourMode />
             </TabList>
             <TabPanels>
                 <TabPanel>
