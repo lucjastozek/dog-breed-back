@@ -13,7 +13,11 @@ export function LeaderboardView(): JSX.Element {
     }, []);
 
     return (
-        <Flex direction={"row"} justifyContent={"center"} alignItems={"center"}>
+        <Flex
+            direction={{ base: "column", md: "row" }}
+            justifyContent={"center"}
+            alignItems={"center"}
+        >
             <Leaderboard topBreeds={topBreeds} setTopBreeds={setTopBreeds} />
             <TopImages top3Breeds={topBreeds.slice(0, 3)} />
         </Flex>

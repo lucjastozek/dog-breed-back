@@ -49,7 +49,7 @@ export function VotingView({
 
     return (
         <div>
-            <Flex color="white">
+            <Flex color="white" direction={{ base: "column", md: "row" }}>
                 <Spacer />
                 <VotingCard
                     imgLink={imageLeft}
