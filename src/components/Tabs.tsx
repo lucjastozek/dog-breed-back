@@ -4,7 +4,10 @@ import {
     TabPanel,
     TabPanels,
     Tabs,
-    Text,
+    Stat,
+    StatLabel,
+    StatNumber,
+    Flex,
 } from "@chakra-ui/react";
 import { ColourMode } from "./ColourMode";
 import { LeaderboardView } from "./LeaderboardView";
@@ -21,8 +24,22 @@ export function TabsView(): JSX.Element {
             <TabList>
                 <Tab>Voting</Tab>
                 <Tab>Leaderboard</Tab>
-                <ColourMode />
-                <Text>Your votes: {voteCounter}</Text>
+                <Flex
+                    justifyContent={"flex-end"}
+                    width={"60vw"}
+                    alignItems={"center"}
+                >
+                    <Stat>
+                        <Flex alignItems={"center"} justifyContent={"flex-end"}>
+                            <StatLabel>Your votes</StatLabel>
+                            <StatNumber marginLeft={"1vw"}>
+                                {voteCounter}
+                            </StatNumber>
+                        </Flex>
+                    </Stat>
+
+                    <ColourMode />
+                </Flex>
             </TabList>
             <TabPanels>
                 <TabPanel>
