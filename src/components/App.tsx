@@ -1,11 +1,7 @@
 import { TabsView } from "./Tabs";
 
 function App() {
-    return (
-        <div className="App">
-            <TabsView />
-        </div>
-    );
+    return <TabsView />;
 }
 
 export default App;

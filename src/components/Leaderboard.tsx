@@ -1,5 +1,6 @@
 import { RepeatIcon } from "@chakra-ui/icons";
 import {
+    Box,
     Heading,
     IconButton,
     Table,
@@ -27,7 +28,7 @@ export function Leaderboard({
         });
     }
     return (
-        <div>
+        <Box margin={"2vh"}>
             <Heading>
                 Leaderboard
                 <IconButton
@@ -60,6 +61,6 @@ export function Leaderboard({
                     </Tbody>
                 </Table>
             </TableContainer>
-        </div>
+        </Box>
     );
 }

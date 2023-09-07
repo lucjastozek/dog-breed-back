@@ -32,7 +32,7 @@ export function VotingCard({
     async function handleVote() {
         setVoted(true);
 
-        await backendApi.put("/leaderboard/", {
+        backendApi.put("/leaderboard/", {
             breed: name,
         });
 
@@ -45,45 +45,43 @@ export function VotingCard({
     };
 
     return (
-        <div>
-            <Card maxW="sm">
-                <CardBody>
-                    <Fade in={isLoaded}>
-                        <Image
-                            width={"40vh"}
-                            height={"40vh"}
-                            object-fit={"cover"}
-                            src={imgLink}
-                            alt={name}
-                            borderRadius="lg"
-                            fallbackStrategy="onError"
-                            fallbackSrc="dog-fallback.jpg"
-                            onClick={handleImageClick}
-                            onLoad={() => setIsLoaded(true)}
-                            onError={() => setIsLoaded(true)}
-                        />
-                    </Fade>
+        <Card maxW="sm">
+            <CardBody>
+                <Fade in={isLoaded}>
+                    <Image
+                        width={"40vh"}
+                        height={"40vh"}
+                        object-fit={"cover"}
+                        src={imgLink}
+                        alt={name}
+                        borderRadius="lg"
+                        fallbackStrategy="onError"
+                        fallbackSrc="dog-fallback.jpg"
+                        onClick={handleImageClick}
+                        onLoad={() => setIsLoaded(true)}
+                        onError={() => setIsLoaded(true)}
+                    />
+                </Fade>
 
-                    <Heading
-                        marginTop={"0.5vh"}
-                        textTransform={"capitalize"}
-                        size="md"
-                    >
-                        {name}
-                    </Heading>
-                </CardBody>
-                <Divider />
-                <CardFooter>
-                    <Button
-                        onClick={handleVote}
-                        variant="solid"
-                        colorScheme="blue"
-                        isDisabled={voted}
-                    >
-                        Vote
-                    </Button>
-                </CardFooter>
-            </Card>
-        </div>
+                <Heading
+                    marginTop={"0.5vh"}
+                    textTransform={"capitalize"}
+                    size="md"
+                >
+                    {name}
+                </Heading>
+            </CardBody>
+            <Divider />
+            <CardFooter>
+                <Button
+                    onClick={handleVote}
+                    variant="solid"
+                    colorScheme="blue"
+                    isDisabled={voted}
+                >
+                    Vote
+                </Button>
+            </CardFooter>
+        </Card>
     );
 }

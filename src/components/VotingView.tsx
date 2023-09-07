@@ -35,30 +35,28 @@ export function VotingView(): JSX.Element {
     };
 
     return (
-        <div>
-            <Flex color="white">
-                <Spacer />
-                <VotingCard
-                    imgLink={breedLeft.imgLink}
-                    name={breedLeft.name}
-                    setVoted={setVoted}
-                    voted={voted}
-                    onImageClick={() =>
-                        handleImageClick(breedLeft.name, setBreedLeft)
-                    }
-                />
-                <Spacer />
-                <VotingCard
-                    imgLink={breedRight.imgLink}
-                    name={breedRight.name}
-                    setVoted={setVoted}
-                    voted={voted}
-                    onImageClick={() =>
-                        handleImageClick(breedRight.name, setBreedRight)
-                    }
-                />
-                <Spacer />
-            </Flex>
-        </div>
+        <Flex color="white">
+            <Spacer />
+            <VotingCard
+                imgLink={breedLeft.imgLink}
+                name={breedLeft.name}
+                setVoted={setVoted}
+                voted={voted}
+                onImageClick={() =>
+                    handleImageClick(breedLeft.name, setBreedLeft)
+                }
+            />
+            <Spacer />
+            <VotingCard
+                imgLink={breedRight.imgLink}
+                name={breedRight.name}
+                setVoted={setVoted}
+                voted={voted}
+                onImageClick={() =>
+                    handleImageClick(breedRight.name, setBreedRight)
+                }
+            />
+            <Spacer />
+        </Flex>
     );
 }

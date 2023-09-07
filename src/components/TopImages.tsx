@@ -1,4 +1,4 @@
-import { Flex, Heading, Image } from "@chakra-ui/react";
+import { Heading, Image, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { BreedProps } from "../interfaces/BreedProps";
 import { fetchBreedImageLinks } from "../utils/fetchBreedImageLinks";
@@ -17,7 +17,7 @@ export function TopImages({ top3Breeds }: TopImagesProps): JSX.Element {
     }, [top3Breeds]);
 
     return (
-        <Flex margin={"2vh"} direction={"column"}>
+        <VStack margin={"2vh"}>
             <Heading>Top 3 Breeds!</Heading>
             {images.map((img, index) => (
                 <Image
@@ -27,6 +27,6 @@ export function TopImages({ top3Breeds }: TopImagesProps): JSX.Element {
                     objectFit={"cover"}
                 />
             ))}
-        </Flex>
+        </VStack>
     );
 }
