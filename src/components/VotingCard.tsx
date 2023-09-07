@@ -9,8 +9,9 @@ import {
     Image,
 } from "@chakra-ui/react";
 
-import { backendApi } from "../utils/requestConfig";
+// import { backendApi } from "../utils/requestConfig";
 import { useState } from "react";
+import { backendApi } from "../utils/requestConfig";
 
 interface CardProps {
     imgLink: string;
@@ -40,6 +41,7 @@ export function VotingCard({
 
         setIsLoaded(false);
         setVoteCounter((prev) => (Number(prev) + 1).toString());
+        setVoted(false);
     }
 
     const handleImageClick = () => {

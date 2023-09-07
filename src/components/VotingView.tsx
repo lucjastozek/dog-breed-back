@@ -25,12 +25,13 @@ export function VotingView({
     const [voted, setVoted] = useState(false);
 
     useEffect(() => {
-        generateDiffBreeds().then(({ leftBreed, rightBreed }) => {
-            setBreedLeft(leftBreed);
-            setBreedRight(rightBreed);
-        });
+        if (voted === false) {
+            generateDiffBreeds().then(({ leftBreed, rightBreed }) => {
+                setBreedLeft(leftBreed);
+                setBreedRight(rightBreed);
+            });
+        }
 
-        setVoted(false);
         localStorage.setItem("voteCounter", voteCounter);
     }, [voted, voteCounter]);
 
