@@ -7,7 +7,7 @@ import {
     Stat,
     StatLabel,
     StatNumber,
-    Flex,
+    Center,
 } from "@chakra-ui/react";
 import { ColourMode } from "./ColourMode";
 import { LeaderboardView } from "./LeaderboardView";
@@ -25,12 +25,12 @@ export function TabsView(): JSX.Element {
                 <Tab>Voting</Tab>
                 <Tab>Leaderboard</Tab>
                 <Stat>
-                    <Flex alignItems={"center"} justifyContent={"flex-end"}>
+                    <Center>
                         <StatLabel>Your votes</StatLabel>
                         <StatNumber marginLeft={"1vw"}>
                             {voteCounter}
                         </StatNumber>
-                    </Flex>
+                    </Center>
                 </Stat>
 
                 <ColourMode />
