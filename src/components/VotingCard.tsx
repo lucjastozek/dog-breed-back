@@ -34,7 +34,7 @@ export function VotingCard({
     async function handleVote() {
         setVoted(true);
 
-        backendApi.put("/leaderboard/", {
+        await backendApi.put("/leaderboard/", {
             breed: name,
         });
 
