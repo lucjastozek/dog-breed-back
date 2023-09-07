@@ -3,7 +3,15 @@ import { useEffect, useState } from "react";
 import { fetchImage } from "../utils/fetchImage";
 import { VotingCard } from "./VotingCard";
 
-export function VotingView(): JSX.Element {
+interface VotingViewProps {
+    setVoteCounter: React.Dispatch<React.SetStateAction<string>>;
+    voteCounter: string;
+}
+
+export function VotingView({
+    setVoteCounter,
+    voteCounter,
+}: VotingViewProps): JSX.Element {
     const [imageLeft, setImageLeft] = useState("");
     const [imageRight, setImageRight] = useState("");
     const [nameLeft, setNameLeft] = useState("");
@@ -22,7 +30,8 @@ export function VotingView(): JSX.Element {
         });
 
         setVoted(false);
-    }, [voted]);
+        localStorage.setItem("voteCounter", voteCounter);
+    }, [voted, voteCounter]);
 
     useEffect(() => {
         if (nameLeft === nameRight) {
@@ -46,12 +55,14 @@ export function VotingView(): JSX.Element {
                     imgLink={imageLeft}
                     name={nameLeft}
                     setVoted={setVoted}
+                    setVoteCounter={setVoteCounter}
                 />
                 <Spacer />
                 <VotingCard
                     imgLink={imageRight}
                     name={nameRight}
                     setVoted={setVoted}
+                    setVoteCounter={setVoteCounter}
                 />
                 <Spacer />
             </Flex>

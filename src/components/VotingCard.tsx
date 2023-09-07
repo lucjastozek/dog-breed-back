@@ -14,12 +14,14 @@ interface CardProps {
     imgLink: string;
     name: string;
     setVoted: React.Dispatch<React.SetStateAction<boolean>>;
+    setVoteCounter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function VotingCard({
     imgLink,
     name,
     setVoted,
+    setVoteCounter,
 }: CardProps): JSX.Element {
     async function handleVote() {
         await backendApi.put("/leaderboard/", {
@@ -27,6 +29,7 @@ export function VotingCard({
         });
 
         setVoted(true);
+        setVoteCounter((prev) => (Number(prev) + 1).toString());
     }
 
     return (
