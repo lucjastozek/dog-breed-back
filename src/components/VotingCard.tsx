@@ -18,6 +18,7 @@ interface CardProps {
     voted: boolean;
     setVoted: React.Dispatch<React.SetStateAction<boolean>>;
     onImageClick: () => void;
+    setVoteCounter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function VotingCard({
@@ -26,6 +27,7 @@ export function VotingCard({
     voted,
     setVoted,
     onImageClick,
+    setVoteCounter,
 }: CardProps): JSX.Element {
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -37,6 +39,7 @@ export function VotingCard({
         });
 
         setIsLoaded(false);
+        setVoteCounter((prev) => (Number(prev) + 1).toString());
     }
 
     const handleImageClick = () => {

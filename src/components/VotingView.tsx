@@ -5,7 +5,15 @@ import { generateDiffBreeds } from "../utils/generateDiffBreeds";
 import { BreedCard } from "../interfaces/BreedCard";
 import { fetchBreedImageLinks } from "../utils/fetchBreedImageLinks";
 
-export function VotingView(): JSX.Element {
+interface VotingViewProps {
+    setVoteCounter: React.Dispatch<React.SetStateAction<string>>;
+    voteCounter: string;
+}
+
+export function VotingView({
+    setVoteCounter,
+    voteCounter,
+}: VotingViewProps): JSX.Element {
     const [breedLeft, setBreedLeft] = useState<BreedCard>({
         imgLink: "",
         name: "",
@@ -23,7 +31,8 @@ export function VotingView(): JSX.Element {
         });
 
         setVoted(false);
-    }, [voted]);
+        localStorage.setItem("voteCounter", voteCounter);
+    }, [voted, voteCounter]);
 
     const handleImageClick = (
         breed: string,
@@ -35,7 +44,7 @@ export function VotingView(): JSX.Element {
     };
 
     return (
-        <Flex color="white">
+        <Flex color="white" direction={{ base: "column", md: "row" }}>
             <Spacer />
             <VotingCard
                 imgLink={breedLeft.imgLink}
@@ -45,6 +54,7 @@ export function VotingView(): JSX.Element {
                 onImageClick={() =>
                     handleImageClick(breedLeft.name, setBreedLeft)
                 }
+                setVoteCounter={setVoteCounter}
             />
             <Spacer />
             <VotingCard
@@ -55,6 +65,7 @@ export function VotingView(): JSX.Element {
                 onImageClick={() =>
                     handleImageClick(breedRight.name, setBreedRight)
                 }
+                setVoteCounter={setVoteCounter}
             />
             <Spacer />
         </Flex>
